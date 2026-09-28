@@ -167,6 +167,11 @@ def index():
         error=error
     )
 
+@app.route('/aboutMLProject')
+def about():
+    # 3. Renders the about page when visiting http://127.0.0.1/5000/aboutMLProject
+    return render_template('aboutus.html')
+
 
 # --------------------------------------------------
 # Run Flask
