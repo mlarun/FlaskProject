@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Student Academic Performance Prediction</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            margin: 0;
+            padding: 40px;
+        }
+
+        .container {
+            width: 650px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px #ccc;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 13px;
+            margin-top: 25px;
+            background: #222;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .result {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f1f1f1;
+            border-radius: 8px;
+        }
+
+        .error {
+            margin-top: 20px;
+            padding: 15px;
+            background: #ffdede;
+            color: #900;
+            border-radius: 5px;
+        }
+
+        .prediction {
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .info {
+            padding: 8px;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+    <h1>
+        Student Performance Prediction
+    </h1>
+
+    <div class="subtitle">
+        Academic Evaluation – 120 Marks
+    </div>
+
+
+    <form method="POST">
+
+        <label>
+            Attendance (%)
+        </label>
+
+        <input
+            type="number"
+            name="attendance"
+            min="0"
+            max="100"
+            step="0.1"
+            placeholder="Example: 85"
+            required
+        >
+
+
+        <label>
+            Sessional Marks (0–30)
+        </label>
+
+        <input
+            type="number"
+            name="sessional"
+            min="0"
+            max="30"
+            step="0.1"
+            placeholder="Example: 25"
+            required
+        >
+
+
+        <label>
+            Assignment Marks (0–20)
+        </label>
+
+        <input
+            type="number"
+            name="assignment"
+            min="0"
+            max="20"
+            step="0.1"
+            placeholder="Example: 17"
+            required
+        >
+
+
+        <label>
+            Class Performance (0–20)
+        </label>
+
+        <input
+            type="number"
+            name="class_performance"
+            min="0"
+            max="20"
+            step="0.1"
+            placeholder="Example: 16"
+            required
+        >
+
+
+        <label>
+            Viva Marks (0–20)
+        </label>
+
+        <input
+            type="number"
+            name="viva"
+            min="0"
+            max="20"
+            step="0.1"
+            placeholder="Example: 17"
+            required
+        >
+
+
+        <label>
+            Mini Project Marks (0–20)
+        </label>
+
+        <input
+            type="number"
+            name="mini_project"
+            min="0"
+            max="20"
+            step="0.1"
+            placeholder="Example: 18"
+            required
+        >
+
+
+        <label>
+            Lab Record Marks (0–10)
+        </label>
+
+        <input
+            type="number"
+            name="lab_record"
+            min="0"
+            max="10"
+            step="0.1"
+            placeholder="Example: 9"
+            required
+        >
+
+
+        <label>
+            Study Hours per Day
+        </label>
+
+        <input
+            type="number"
+            name="study_hours"
+            min="0"
+            max="10"
+            step="0.1"
+            placeholder="Example: 4"
+            required
+        >
+
+
+        <button type="submit">
+            Predict Student Performance
+        </button>
+
+    </form>
+
+
+    {% if error %}
+
+    <div class="error">
+
+        <strong>Error:</strong>
+
+        {{ error }}
+
+    </div>
+
+    {% endif %}
+
+
+    {% if prediction %}
+
+    <div class="result">
+
+        <h2>Prediction Result</h2>
+
+
+        <div class="prediction">
+
+            Prediction:
+
+            <strong>
+                {{ prediction }}
+            </strong>
+
+        </div>
+
+
+        <div class="info">
+
+            <strong>Total Marks:</strong>
+
+            {{ "%.2f"|format(total_marks) }}
+
+            / 120
+
+        </div>
+
+
+        <div class="info">
+
+            <strong>Percentage:</strong>
+
+            {{ "%.2f"|format(percentage) }}%
+
+        </div>
+
+
+        <div class="info">
+
+            <strong>Pass Probability:</strong>
+
+            {{ "%.2f"|format(pass_probability) }}%
+
+        </div>
+
+
+        <div class="info">
+
+            <strong>Fail Probability:</strong>
+
+            {{ "%.2f"|format(fail_probability) }}%
+
+        </div>
+
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+
+</html>
